@@ -1,0 +1,26 @@
+//unique_ptr how to
+#include <iostream>
+#include <memory> 
+using namespace std;
+class A { 
+    public:
+    string  str1;
+    void setString( string str){ str1 = str;}
+    void printStr() { cout << str1 << endl; } 
+}; 
+int main() 
+{ 
+    unique_ptr<A> p1(new A); 
+    p1->setString( "Data1");
+    p1->printStr();
+    // displays address of the containing pointer 
+    cout << p1.get() << endl; 
+    unique_ptr<A> p2;
+    p2 = move(p1);
+    p2->printStr();   
+    cout << p2.get() << endl;
+    p2->setString("New");
+    p2->printStr();
+   // p1->printStr();
+    return 0; 
+}
